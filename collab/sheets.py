@@ -8,7 +8,7 @@ class Spreadsheet:
   Interact with a spreadsheet
   """
 
-  def __init__(self, spreadsheet_id: str, open_: boolean = True):
+  def __init__(self, spreadsheet_id: str, open_: bool = True):
     """
     Authenticate with google and authorize utiltites
     spreadsheet_id: The ID from the URL of the spreadsheet
