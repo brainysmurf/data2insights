@@ -20,7 +20,7 @@ class Doc:
         tab = self.spreadsheet.worksheet(title)
         # 4. Get all values as a list of lists
         data = tab.get_all_values()
-        logger.debug("Got data")
+        logger.info(f"Pulled {len(data)} rows of data")
 
         # 5. Convert to a DataFrame
         return Doc.convert_data_to_df(data)
@@ -38,21 +38,21 @@ class GSheet:
     client: google.oauth2.service_account.Credentials = field(init=False)
     document: Doc = field(init=False)  # let me init
 
-    def __post_init__(self, open_: bool = True):
+    def __post_init__(self):
         """
-        Authenticate with google and authorize utiltites
-        spreadsheet_id: The ID from the URL of the spreadsheet
-
-        -> Will have .document
+        Create client to interact with google spreadsheets
         """
         self.client = gspread.Client(auth=self.service.creds)
-        if open_:
-            self.open_by_key()
+        if self.open_:
+            self.open_by_id()
+        else:
+            self.document = None
 
-    def open_by_key(self) -> Doc:
+    def open_by_id(self) -> Doc:
         self.document = Doc(self.client.open_by_key(self.spreadsheet_id))
         return self.document
 
     @classmethod
     def scopes(cls):
+        """Scopes needed on the service account"""
         return ["https://www.googleapis.com/auth/spreadsheets"]

@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
-import gspread
 import google
+import logging
+
+logger = logging.getLogger(__file__)
 
 
 @dataclass
@@ -17,6 +19,7 @@ class Service:
             from google.oauth2 import service_account
             from .sheets import GSheet
 
+            logger.debug("Authenticating with local service account")
             self.creds = service_account.Credentials.from_service_account_file(
                 "service_account.json", scopes=GSheet.scopes()
             )
@@ -25,5 +28,6 @@ class Service:
             # This works with Google colab
             from google.auth import default
 
+            logger.debug("Authenticating user via Google Colab")
             auth.authenticate_user()
             self.creds, project = default()

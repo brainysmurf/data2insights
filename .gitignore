@@ -1,0 +1,10 @@
+__pycache__/
+.env
+service_account.json
+*.egg-info/
+*.egg
+eggs/
+.eggs/
+.venv
+venv
+.DS_Store
