@@ -2,10 +2,23 @@ from click.testing import CliRunner
 from .cli import main
 
 
-def homeroom():
+def homeroom(id_):
 
     runner = CliRunner()
     result = runner.invoke(
-        main, ["target", "--type", "gcloud", "source", "--type", "gcloud", "action"]
+        main,
+        [
+            "target",
+            "--type",
+            "gcloud",
+            "--id",
+            id_,
+            "source",
+            "--type",
+            "gcloud",
+            "--id",
+            id_,
+            "action",
+        ],
     )
     print(result.output)
