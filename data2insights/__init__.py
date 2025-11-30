@@ -8,11 +8,12 @@ __all__ = ["GSheet"]
 load_dotenv()
 
 if level := os.environ.get("DATA2INSIGHTS_LOGLEVEL"):
-
     if hasattr(logging, level.upper()):
         log_level = getattr(logging, level.upper(), logging.INFO)
     else:
-        raise ValueError(f"{level} is not a valid logger level: INFO, WARNING, DEBUG")
+        raise ValueError(
+            f"{level} is not a valid logger level: CRITICAL, ERROR, WARNING, INFO, DEBUG, NOTSET"
+        )
 
     logging.basicConfig(level=log_level)
     logger = logging.getLogger("data2insights")

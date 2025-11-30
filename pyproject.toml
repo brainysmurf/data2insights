@@ -5,7 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "data2insights"
 version = "0.0.1"
-dependencies = ['pandas', 'gspread', 'click', 'python-dotenv']
+dependencies = [
+  'pandas',
+  'gspread',
+  'click',
+  'python-dotenv',
+  'gspread-dataframe',
+]
 
 [project.scripts]
 data2insights = "data2insights.cli:main"
