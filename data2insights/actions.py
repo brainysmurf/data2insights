@@ -18,7 +18,7 @@ def prepare_housepoint_tallying(id_):
             "gcloud",
             "--id",
             id_,
-            "scenario:housepoints:setup",
+            "scenario:housepoints:stage",
         ],
     )
 
